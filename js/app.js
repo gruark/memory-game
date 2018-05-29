@@ -1,8 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+let card = document.querySelectorAll('.card');
+let allCards = [...card];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -38,6 +38,9 @@ function shuffle(array) {
  */
 
 
-card.addEventListener('click', function cardClick(event) {
-												  
+//Set up Event Listener for a card.
+allCards.forEach(function(card){
+    card.addEventListener('click', function cardClick(e) {
+      card.classList.add('open', 'show');
 												  });
+});
