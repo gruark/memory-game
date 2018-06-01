@@ -1,16 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-let card = document.querySelectorAll('.card');
-let allCards = [...card];
+let deck = $('.deck');
+let allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-shuffle(allCards);
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -23,9 +22,20 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
+
+ shuffle(allCards);
+
+//Create Deck
+for (var i = 0; i < allCards.length; i++) {
+   deck.append($('<li class="card"><i class="fas fa-' + allCards[i] + '"></i></li>'));
+}
+
+
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -39,13 +49,29 @@ function shuffle(array) {
  */
 
 
-
+/*
 //Set up Event Listener for a card and display Card's symbol
 
 allCards.forEach(function(card){
     card.addEventListener('click', function cardClick(e) {
       this.classList.toggle("open");
-      this.classList.toggle("show");												 
+      this.classList.toggle("show");
 	       });
 });
 
+
+//Set timer.  Code modified from https://javascript.info/settimeout-setinterval
+
+function initTime(){
+	currentTime = setInterval(function () {
+		$timer.text('${second}')
+		second = second + 1
+		}, 1000);
+}
+
+function resetTimer(timer) {
+	if (timer) {
+		clearInterval(timer);
+	}
+}
+*/
