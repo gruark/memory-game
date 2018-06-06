@@ -25,16 +25,43 @@ function shuffle(array) {
     return array;
 }
 
- shuffle(allCards);
+cards = shuffle(allCards);
 
-//Create Deck
-for (var i = 0; i < allCards.length; i++) {
-   deck.append($('<li class="card"><i class="fas fa-' + allCards[i] + '"></i></li>'));
+//Initialize a new game
+createDeck(cards);
+
+
+// Create Deck
+function createDeck(cards){
+for (var i = 0; i < cards.length; i++) {
+   deck.append($('<li class="card"><i class="fas fa-' + cards[i] + '"></i></li>'));
+ }
+ initCards(cards);
+};
+
+// Add event listeners
+function initCards(cards){
+  document.querySelectorAll('li.card').forEach(function(cards){
+    cards.addEventListener('click', function() {
+       cards.classList.toggle('open');
+       cards.classList.toggle('show');
+        });
+     });
+  };
+
+
+/*
+function matchCards(cards){
+
 }
 
+function setTimer() {
+  timer = setInterval(function(){
+    time++;
 
-
-
+  }
+}
+*/
 
 
 /*
