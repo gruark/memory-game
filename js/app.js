@@ -3,6 +3,8 @@
  */
 let deck = $('.deck');
 let allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
+let moves = 0;
+const star = document.querySelectorAll(".fa-star");
 
 /*
  * Display the cards on the page
@@ -45,9 +47,30 @@ function initCards(cards){
     cards.addEventListener('click', function() {
        cards.classList.toggle('open');
        cards.classList.toggle('show');
+       moves++;
         });
      });
   };
+
+
+// setting rates based on moves
+
+function removeStars(moves) {
+    if (moves > 8 && moves < 12){
+        for( i= 0; i < 3; i++){
+            if(i > 1){
+                star[i].style.visibility = "collapse";
+            }
+        }
+    }
+    else if (moves > 13){
+        for( i= 0; i < 3; i++){
+            if(i > 0){
+                star[i].style.visibility = "collapse";
+            }
+        }
+    }
+  }
 
 
 /*
