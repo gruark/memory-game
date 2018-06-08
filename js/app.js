@@ -1,9 +1,11 @@
 /*
  * Create a list that holds all of your cards
  */
-let deck = $('.deck');
-let allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
+const deck = $('.deck');
+const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
 let moves = 0;
+let matched = [];
+let open = [];
 const star = document.querySelectorAll(".fa-star");
 
 /*
@@ -33,6 +35,7 @@ cards = shuffle(allCards);
 createDeck(cards);
 
 
+
 // Create Deck
 function createDeck(cards){
 for (var i = 0; i < cards.length; i++) {
@@ -48,43 +51,52 @@ function initCards(cards){
        cards.classList.toggle('open');
        cards.classList.toggle('show');
        moves++;
+	   removeStars(moves);
         });
      });
   };
 
+/*
+  function moveCounter(count){
+	  if(count === true){
+		  star.removeChild();
+	  }
+	  if
+  }
 
-// setting rates based on moves
+function compareCards(card1, card2){
+	if (card1 === card2) {
+		
+	}
+}
+
+function gameOver(){
+}
+
+*/
+
+//  Update rating system
 
 function removeStars(moves) {
-    if (moves > 8 && moves < 12){
-        for( i= 0; i < 3; i++){
-            if(i > 1){
-                star[i].style.visibility = "collapse";
-            }
-        }
+     if ((moves/2) > 10 && (moves/2) < 20){
+      for(i = 0; i < star.length; i++){
+		  if( i > 1){
+               $(star[i]).remove();
+			   }
+          }
+       }
+    else if ((moves/2) > 20){
+       for( i= 0; i < star.length; i++){
+           if(i > 0){
+               $(star[i]).remove();
+			   }
+	       }
     }
-    else if (moves > 13){
-        for( i= 0; i < 3; i++){
-            if(i > 0){
-                star[i].style.visibility = "collapse";
-            }
-        }
-    }
-  }
+};
 
 
-/*
-function matchCards(cards){
 
-}
 
-function setTimer() {
-  timer = setInterval(function(){
-    time++;
-
-  }
-}
-*/
 
 
 /*
@@ -99,29 +111,3 @@ function setTimer() {
  */
 
 
-/*
-//Set up Event Listener for a card and display Card's symbol
-
-allCards.forEach(function(card){
-    card.addEventListener('click', function cardClick(e) {
-      this.classList.toggle("open");
-      this.classList.toggle("show");
-	       });
-});
-
-
-//Set timer.  Code modified from https://javascript.info/settimeout-setinterval
-
-function initTime(){
-	currentTime = setInterval(function () {
-		$timer.text('${second}')
-		second = second + 1
-		}, 1000);
-}
-
-function resetTimer(timer) {
-	if (timer) {
-		clearInterval(timer);
-	}
-}
-*/
