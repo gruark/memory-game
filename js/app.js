@@ -1,7 +1,7 @@
+
 /*
  * Create a list that holds all of your cards
  */
-const deck = $('.deck');
 const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
 let moves = 0;
 let matched = [];
@@ -29,46 +29,52 @@ function shuffle(array) {
     return array;
 }
 
-cards = shuffle(allCards);
+deck = shuffle(allCards);
 
 //Initialize a new game
-createDeck(cards);
+createDeck(deck);
+resetGame();
 
 
 
 // Create Deck
-function createDeck(cards){
-for (var i = 0; i < cards.length; i++) {
-   deck.append($('<li class="card"><i class="fas fa-' + cards[i] + '"></i></li>'));
+function createDeck(deck){
+for (var i = 0; i < deck.length; i++) {
+   $('.deck').append($('<li class="card"><i class="fas fa-' + deck[i] + '"></i></li>'));
  }
- initCards(cards);
+ initCards(deck);
 };
 
 // Add event listeners
-function initCards(cards){
-  document.querySelectorAll('li.card').forEach(function(cards){
-    cards.addEventListener('click', function() {
-       cards.classList.toggle('open');
-       cards.classList.toggle('show');
-       moves++;
-	   removeStars(moves);
+function initCards(deck){
+document.querySelectorAll('li.card').forEach(function(card){
+    card.addEventListener('click', function() {
+       card.classList.toggle('open');
+       card.classList.toggle('show');
+       matchCards(card);
         });
      });
-  };
-
-/*
-  function moveCounter(count){
-	  if(count === true){
-		  star.removeChild();
-	  }
-	  if
   }
 
-function compareCards(card1, card2){
-	if (card1 === card2) {
-		
+
+  // Add event listeners
+function matchCards(card){
+  open.push(card.firstChild.classList[1]);
+	if(open.length === 2){
+       if(open[0] === open[1]){
+		  console.log("Match");
+     	}
+	  else {
+		  console.log("No go");
+	  }
+      moves++;
 	}
-}
+      removeStars(moves);
+	}
+
+
+
+/*
 
 function gameOver(){
 }
@@ -78,26 +84,30 @@ function gameOver(){
 //  Update rating system
 
 function removeStars(moves) {
-     if ((moves/2) > 10 && (moves/2) < 20){
+     if ((moves) > 10 && (moves) < 20){
       for(i = 0; i < star.length; i++){
 		  if( i > 1){
                $(star[i]).remove();
 			   }
           }
        }
-    else if ((moves/2) > 20){
+    else if ((moves) > 20){
        for( i= 0; i < star.length; i++){
            if(i > 0){
                $(star[i]).remove();
 			   }
 	       }
     }
-};
+  }
 
 
 
-
-
+function resetGame () {
+      var resetButton = document.getElementById('reset');
+      resetButton.addEventListener('click', function(){
+        console.log(resetButton);
+      });
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -109,5 +119,3 @@ function removeStars(moves) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-
