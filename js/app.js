@@ -1,12 +1,11 @@
-
 /*
  * Create a list that holds all of your cards
  */
 const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle", "train", "bus", "ship", "bicycle", "car", "plane", "helicopter", "motorcycle"];
 let moves = 0;
-let matched = [];
+let matchedCards = [];
 let open = [];
-const star = document.querySelectorAll(".fa-star");
+const star = document.querySelectorAll('.fa-star');
 
 /*
  * Display the cards on the page
@@ -31,18 +30,22 @@ function shuffle(array) {
 
 deck = shuffle(allCards);
 
-//Initialize a new game
-createDeck(deck);
-resetGame();
-
-
+newGame(deck);
+initCards(deck);
 
 // Create Deck
-function createDeck(deck){
+function newGame(deck){
+
+   //moves = 0;
+  // matchedCards = [];
+  // open = [];
+   //resetGame(matchCards);
+   //updateMoves(moves);
+
+  
 for (var i = 0; i < deck.length; i++) {
    $('.deck').append($('<li class="card"><i class="fas fa-' + deck[i] + '"></i></li>'));
  }
- initCards(deck);
 };
 
 // Add event listeners
@@ -62,24 +65,38 @@ function matchCards(card){
   open.push(card.firstChild.classList[1]);
 	if(open.length === 2){
        if(open[0] === open[1]){
-		  console.log("Match");
+       match(open);
+       open = [];
      	}
 	  else {
-		  console.log("No go");
+       noMatch(open);
+       open = [];
 	  }
       moves++;
 	}
       removeStars(moves);
+      updateMoves(moves);
 	}
 
+function match(open, card){
+   $('.card.open').addClass('match');
+   $('.card').off();
+   matchedCards.push(open);
+   }
 
 
-/*
-
-function gameOver(){
+function noMatch(open){
+    $('.card.open').removeClass('open show');
 }
 
-*/
+function gameOver(matchCards){
+   if(matchedCards === 8){
+    //Display Modal
+     console.log("You Win!")
+   }
+}
+
+
 
 //  Update rating system
 
@@ -91,7 +108,7 @@ function removeStars(moves) {
 			   }
           }
        }
-    else if ((moves) > 20){
+    else if (moves > 20){
        for( i= 0; i < star.length; i++){
            if(i > 0){
                $(star[i]).remove();
@@ -100,14 +117,22 @@ function removeStars(moves) {
     }
   }
 
+//Update Number of Moves
+function updateMoves(moves){
+   $('#num').html(moves);
+}
 
-
+/*
 function resetGame () {
       var resetButton = document.getElementById('reset');
       resetButton.addEventListener('click', function(){
-        console.log(resetButton);
+       newGame(deck);
       });
 }
+*/
+
+//Initialize a new game
+
 
 /*
  * set up the event listener for a card. If a card is clicked:

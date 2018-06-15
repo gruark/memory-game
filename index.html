@@ -1,42 +1,40 @@
-<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Matching Game</title>
-    <meta name="description" content="">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Roboto+Condensed" rel="stylesheet">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <link rel="stylesheet" href="css/app.css">
+   <meta charset="utf-8">
+   <title>Matching Game</title>
+   <meta name="description" content="">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+   <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Roboto+Condensed" rel="stylesheet">
+   <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>Oh, the Ways You Can Go!</h1>
-            <h2>A Matching Game</h2>
+   <div class="container">
+       <header>
+           <h1>Oh, the Ways You Can Go!</h1>
+           <h2>A Matching Game</h2>
 
 
-        <section class="score-panel">
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        	</ul>
+       <section class="score-panel">
+         <ul class="stars">
+           <li><i class="fa fa-star"></i></li>
+           <li><i class="fa fa-star"></i></li>
+           <li><i class="fa fa-star"></i></li>
+         </ul>
 
-        	<span class="moves">3</span> Moves
+         <span class="moves">Moves: <span id="num">0</span> </span>
 
-              | Time: <span class="timer">0</span>
-            <div class="restart">
-        		<i class="fas fa-redo"></i>
-        	</div>
-        </section>
-        </header>
+             | Time: <span class="timer">0</span>
+           <div class="restart">
+           <i id= "reset" class="fas fa-redo"></i>
+         </div>
+       </header>
 
-        <ul class="deck"></ul>
-        </div>
+       <ul class="deck"></ul>
+       </div>
 
-    <script src="js/app.js"></script>
+   <script src="js/app.js"></script>
 </body>
 </html>
