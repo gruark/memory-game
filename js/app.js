@@ -7,12 +7,7 @@ let matchedCards = [];
 let open = [];
 const star = document.querySelectorAll('.fa-star');
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -33,14 +28,14 @@ deck = shuffle(allCards);
 newGame(deck);
 initCards(deck);
 
-// Create Deck
+// Create Deck by shuffling initial card array and adding each card dynamically.
 function newGame(deck){
 
-   //moves = 0;
-  // matchedCards = [];
-  // open = [];
-   //resetGame(matchCards);
-   //updateMoves(moves);
+  moves = 0;
+  matchedCards = [];
+  open = [];
+  resetGame(matchCards);
+  updateMoves(moves);
 
   
 for (var i = 0; i < deck.length; i++) {
@@ -48,47 +43,54 @@ for (var i = 0; i < deck.length; i++) {
  }
 };
 
-// Add event listeners
+// Add event listeners for click functionality
 function initCards(deck){
 document.querySelectorAll('li.card').forEach(function(card){
     card.addEventListener('click', function() {
-       card.classList.toggle('open');
-       card.classList.toggle('show');
+       card.classList.add('open');
+       card.classList.add('show');
        matchCards(card);
         });
      });
   }
 
 
-  // Add event listeners
+  // Open two cards and determine whether there's a match.
 function matchCards(card){
   open.push(card.firstChild.classList[1]);
 	if(open.length === 2){
        if(open[0] === open[1]){
        match(open);
        open = [];
+       moves++;
      	}
 	  else {
-       noMatch(open);
+       if(open.length === 2){
+         moves++;
+       }
+       setTimeout(noMatch, 1000);
        open = [];
 	  }
-      moves++;
 	}
       removeStars(moves);
       updateMoves(moves);
 	}
-
-function match(open, card){
+	
+	
+// If cards match
+function match(open){
    $('.card.open').addClass('match');
    $('.card').off();
-   matchedCards.push(open);
+   matchedCards.push(open[0]);
+   matchedCards.push(open[1]);
    }
 
-
+// If cards don't match
 function noMatch(open){
     $('.card.open').removeClass('open show');
 }
 
+//Display modal at the end of a completed game.
 function gameOver(matchCards){
    if(matchedCards === 8){
     //Display Modal
@@ -97,6 +99,8 @@ function gameOver(matchCards){
 }
 
 
+/*  These are the auxillary functions that perform 
+other updates throughout the game  */
 
 //  Update rating system
 
@@ -118,29 +122,21 @@ function removeStars(moves) {
   }
 
 //Update Number of Moves
+
 function updateMoves(moves){
    $('#num').html(moves);
 }
 
-/*
+// Set up timer function
+
+
+
+//Reset to start new game
+
 function resetGame () {
       var resetButton = document.getElementById('reset');
       resetButton.addEventListener('click', function(){
-       newGame(deck);
+       newGame();
       });
 }
-*/
 
-//Initialize a new game
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
-
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
