@@ -48,7 +48,6 @@ function initCards(deck){
 document.querySelectorAll('li.card').forEach(function(card){
     card.addEventListener('click', function() {
        card.classList.add('open');
-       card.classList.add('show');
        matchCards(card);
         });
      });
@@ -57,7 +56,9 @@ document.querySelectorAll('li.card').forEach(function(card){
 
   // Open two cards and determine whether there's a match.
 function matchCards(card){
+  if(!card.classList.contains('show')){
   open.push(card.firstChild.classList[1]);
+     card.classList.add('show');
 	if(open.length === 2){
        if(open[0] === open[1]){
        match(open);
@@ -75,7 +76,8 @@ function matchCards(card){
       removeStars(moves);
       updateMoves(moves);
 	}
-	
+}
+
 	
 // If cards match
 function match(open){
