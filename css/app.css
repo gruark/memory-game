@@ -17,54 +17,6 @@ body {
 }
 
 body {
-    background: #ffffff url('https://images.unsplash.com/photo-1478031706604-bb4b7b0b4e9e?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=dfec973c8b68c56cdfe07db9927f2741'); /* Free stock photo from Unsplash.com */
-    font-family: 'Coda', cursive;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-h1 {
-    font-family: 'Bowlby One SC', cursive;
-	font-size: 40px;
-	text-align: center;
-}
-
-h2 {
-    font-family: 'Roboto Condensed', sans-serif;
-	font-size: 30px;
-    text-align: center;
-}
-
-header {
-    width: 660px;
-	background-color: #ffffff;
-	border-radius: 10px;
-}
-
-html {
-    box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
     background: #ffffff url('https://images.unsplash.com/photo-1478031706604-bb4b7b0b4e9e?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=dfec973c8b68c56cdfe07db9927f2741');
     background-size: 100%;
     font-family: 'Coda', cursive;
@@ -79,13 +31,18 @@ body {
 
 h1 {
     font-family: 'Bowlby One SC', cursive;
-	font-size: 40px;
-	text-align: center;
+  	font-size: 40px;
+  	text-align: center;
 }
 
 h2 {
     font-family: 'Roboto Condensed', sans-serif;
-	font-size: 30px;
+	  font-size: 30px;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Roboto Condensed', sans-serif;
     text-align: center;
 }
 
@@ -169,4 +126,56 @@ header {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+/*
+ * Styles for the Modal
+ */
+
+ .modal {
+   position: fixed;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   opacity: 0;
+   visibility: hidden;
+   transform: scale(1.1);
+ }
+
+ .modal-content {
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%, 50%);
+   background-color: white;
+   padding: 1rem 1.5rem;
+   width: 30rem;
+   border-radius: 0.5rem;
+ }
+
+.bold {
+   size: 12px;
+   font-weight: bold;
+}
+
+.close-button {
+  float: right;
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button:hover {
+  background-color: darkgray;
+}
+
+.show-modal {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.24s 0s;
 }

@@ -8,8 +8,7 @@ const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter
   let matchedCards = [];
   let open = [];
   let totalSeconds = 0;
-  let minLabel = document.getElementById("min");
-  let secLabel = document.getElementById("sec");
+
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -71,7 +70,7 @@ function matchCards(card){
     	   }
 	     else{
          moves++;
-         setTimeout(noMatch, 100);
+         setTimeout(noMatch, 500);
          open = [];
       }
     }
@@ -105,8 +104,7 @@ function noMatch(open){
 
 function gameOver(){
    if(matchedCards.length === 16){
-    //Display Modal
-     console.log("You Win!");
+     toggleModal();
      stopTimer();
    }
 }
@@ -119,7 +117,7 @@ other updates throughout the game  */
 
 function removeStars(moves) {
      const star = document.querySelectorAll('.fa-star');
-     if ((moves) > 15 && (moves) < 25){
+     if ((moves) > 15 && (moves) < 30){
       for(i = 0; i < star.length; i++){
 		  if( i > 1){
                $(star[i]).hide();
@@ -138,7 +136,7 @@ function removeStars(moves) {
 //Update Number of Moves
 
 function updateMoves(moves){
-   $('#num').html(moves);
+   $('.num').html(moves);
 }
 
 // Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
@@ -146,10 +144,17 @@ function startTimer(){
      totalSeconds = 0;
      timer = setInterval(function() {
      ++totalSeconds;
-     secLabel.innerHTML = pad(totalSeconds % 60);
-     minLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+     displayTime();
    }, 1000);
      return timer;
+}
+
+function displayTime(timer){
+     let seconds = pad(totalSeconds % 60);
+     let minutes = pad(parseInt(totalSeconds / 60));
+     $('.min').html(minutes);
+     $('.sec').html(seconds);
+
 }
 
 function pad(val){
@@ -163,6 +168,23 @@ function pad(val){
 
 function stopTimer(){
     clearInterval(timer);
+}
+
+
+// Modal display modified from https://sabe.io/tutorials/how-to-create-modal-popup-box
+
+var modal = document.querySelector(".modal");
+var closeButton = document.querySelector(".close-button");
+
+function toggleModal(){
+  modal.classList.toggle("show-modal");
+  updateMoves(moves);
+  displayTime(timer);
+  closeModal();
+}
+
+function closeModal(){
+   closeButton.addEventListener("click", toggleModal);
 }
 
 //Reset to start new game

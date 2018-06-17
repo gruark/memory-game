@@ -2,19 +2,22 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Project Title](#projectTitle)
 
-## Instructions
+* [Built With](#builtWith)
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+* [Acknowledgements](#acknowledgments)
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Project Title
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+This is a travel-themed rendition of Udacity's Memory Game project for the Front End Web Dev program.  It is called "Oh, The Ways You Can Go!"
 
-## Contributing
+## Built With
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+This project was built using HTML, CSS, Vanilla JavaScript, and jQuery.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## Acknowledgements
+
+*  Timer function was modified from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+
+*  Modal Display was modified from https://sabe.io/tutorials/how-to-create-modal-popup-box
