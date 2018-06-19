@@ -8,9 +8,11 @@ const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter
   let matchedCards = [];
   let open = [];
   let totalSeconds = 0;
-  const endStars = $('.fa-star:visible').length; 
+  const star = document.querySelectorAll('.fa-star');
+  let stars = 3;
   document.querySelector('.fa-redo').addEventListener('click', resetGame);
   document.querySelector('.modalRestart').addEventListener('click', playAgain);
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -33,6 +35,7 @@ function newGame(){
   initCards(deck);
   sec = 0;
   min = 0;
+  moves = 0;
   resetMoves(moves);
   matchedCards = [];
   open = [];
@@ -115,7 +118,6 @@ other updates throughout the game  */
 //  Update rating system
 
 function removeStars(moves) {
-     const star = document.querySelectorAll('.fa-star');
      if ((moves) > 15 && (moves) < 30){
       for(i = 0; i < star.length; i++){
 		  if( i > 1){
@@ -133,12 +135,19 @@ function removeStars(moves) {
   }
 
 function resetStars(){
-   $('.fa-star').show();
+   $(star).show();
 }
 // Dipslay the ending number of stars 
 
-function displayStars(endStars){
-   $('.rating').html(endStars);
+function displayStars(moves){
+   if ((moves) > 15 && (moves) < 30){
+       stars--;
+       }
+    else if (moves > 20){
+       stars--;
+       }
+	  $('.rating').html(stars);
+
 }
 
 //Display the number of moves
@@ -186,38 +195,41 @@ function stopTimer(){
 // Modal display modified from https://sabe.io/tutorials/how-to-create-modal-popup-box
 
 var modal = document.querySelector(".modal");
-var closeButton = document.querySelector(".close-button");
+
 
 function toggleModal(){
   modal.classList.toggle("show-modal");
   updateMoves(moves);
+  stopTimer();
   displayTime(timer);
-  displayStars(endStars);
+  displayStars(moves);
   closeModal();
 }
 
 function closeModal(){
+   var closeButton = document.querySelector(".close-button");
+  
    closeButton.addEventListener("click", toggleModal);
   
 }
 
 //Reset to start new game
          
-  function resetGame(){
-        for (var i = 0; i < deck.length; i++) {
-           $(".card").remove();
-         }
-        resetStars();
-        deck = [];
-        stopTimer();
-        resetMoves();
-        newGame(); 
+function resetGame(){
+   for (var i = 0; i < deck.length; i++) {
+      $(".card").remove();
+    }
+       resetStars();
+       deck = [];
+	   moves = 0;
+       stopTimer();
+       resetMoves(moves);
+       newGame(); 
     }
 
-  function playAgain(){
+function playAgain(){
 	   modal.classList.toggle("show-modal");
        resetGame();
- 
-  }
+    }
 
 newGame();
