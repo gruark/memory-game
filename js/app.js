@@ -118,21 +118,22 @@ other updates throughout the game  */
 //  Update rating system
 
 function removeStars(moves) {
-     if ((moves) > 15 && (moves) < 30){
+     if (moves > 15  && moves < 29) {
       for(i = 0; i < star.length; i++){
 		  if( i > 1){
                $(star[i]).hide();
 			   }
           }
        }
-    else if (moves > 20){
+   else if (moves >= 30){
        for( i= 0; i < star.length; i++){
            if(i > 0){
                $(star[i]).hide();
 			   }
 	       }
     }
-  }
+}
+ 
 
 function resetStars(){
    $(star).show();
@@ -140,10 +141,10 @@ function resetStars(){
 // Dipslay the ending number of stars 
 
 function displayStars(moves){
-   if ((moves) > 15 && (moves) < 30){
+   if ((moves) > 15 && moves < 30){
        stars--;
        }
-    else if (moves > 20){
+    else if (moves > 29){
        stars--;
        }
 	  $('.rating').html(stars);
