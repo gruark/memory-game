@@ -10,7 +10,7 @@ const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter
   let totalSeconds = 0;
   const endStars = $('.fa-star:visible').length; 
   document.querySelector('.fa-redo').addEventListener('click', resetGame);
-  document.querySelector('.modalRestart').addEventListener('click', resetGame);
+  document.querySelector('.modalRestart').addEventListener('click', playAgain);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -36,7 +36,6 @@ function newGame(){
   resetMoves(moves);
   matchedCards = [];
   open = [];
-  restartGame(deck);  
 };
 
 // Create Deck by adding each card dynamically and adding event listeners
@@ -199,6 +198,7 @@ function toggleModal(){
 
 function closeModal(){
    closeButton.addEventListener("click", toggleModal);
+  
 }
 
 //Reset to start new game
@@ -213,5 +213,11 @@ function closeModal(){
         resetMoves();
         newGame(); 
     }
+
+  function playAgain(){
+	   modal.classList.toggle("show-modal");
+       resetGame();
+ 
+  }
 
 newGame();

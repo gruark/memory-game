@@ -180,3 +180,19 @@ header {
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.24s 0s;
 }
+
+.modalRestart{
+  font size: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  padding: 20px 20px;
+  color: white;
+  background-color: #6699ff;
+  border-radius: 8px;
+}
+
+.modal-content{
+  padding: 30px;
+  text-align: center;
+  font-size: 20px;
+ }
