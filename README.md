@@ -8,6 +8,8 @@
 
 * [Acknowledgements](#acknowledgments)
 
+* [Known Bugs](#knownBugs)
+
 ## Project Title
 
 This is a travel-themed rendition of Udacity's Memory Game project for the Front End Web Dev program.  It is called "Oh, The Ways You Can Go!"
@@ -21,3 +23,9 @@ This project was built using HTML, CSS, Vanilla JavaScript, and jQuery.
 *  Timer function was modified from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 
 *  Modal Display was modified from https://sabe.io/tutorials/how-to-create-modal-popup-box
+
+*  Shuffle function from http://stackoverflow.com/a/2450976
+
+## Known Bugs
+
+* Timer starts when screen loads instead of first mouse click.

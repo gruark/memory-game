@@ -8,8 +8,9 @@ const allCards = ["train", "bus", "ship", "bicycle", "car", "plane", "helicopter
   let matchedCards = [];
   let open = [];
   let totalSeconds = 0;
-
-
+  const endStars = $('.fa-star:visible').length; 
+  document.querySelector('.fa-redo').addEventListener('click', resetGame);
+  document.querySelector('.modalRestart').addEventListener('click', resetGame);
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -32,11 +33,10 @@ function newGame(){
   initCards(deck);
   sec = 0;
   min = 0;
-  moves = 0;
+  resetMoves(moves);
   matchedCards = [];
   open = [];
-  resetGame(deck);
-  updateMoves(moves);
+  restartGame(deck);  
 };
 
 // Create Deck by adding each card dynamically and adding event listeners
@@ -133,13 +133,26 @@ function removeStars(moves) {
     }
   }
 
-//Update Number of Moves
+function resetStars(){
+   $('.fa-star').show();
+}
+// Dipslay the ending number of stars 
+
+function displayStars(endStars){
+   $('.rating').html(endStars);
+}
+
+//Display the number of moves
 
 function updateMoves(moves){
    $('.num').html(moves);
 }
 
-// Timer function from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+function resetMoves(moves){
+   moves = 0;
+   updateMoves(moves);
+}
+// Timer function was modified from https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 function startTimer(){
      totalSeconds = 0;
      timer = setInterval(function() {
@@ -166,10 +179,10 @@ function pad(val){
    }
 }
 
+// Clear the timer for displaying game time and resetting game
 function stopTimer(){
     clearInterval(timer);
 }
-
 
 // Modal display modified from https://sabe.io/tutorials/how-to-create-modal-popup-box
 
@@ -180,6 +193,7 @@ function toggleModal(){
   modal.classList.toggle("show-modal");
   updateMoves(moves);
   displayTime(timer);
+  displayStars(endStars);
   closeModal();
 }
 
@@ -188,19 +202,16 @@ function closeModal(){
 }
 
 //Reset to start new game
-
-function resetGame (deck) {
-      var resetButton = document.getElementById('reset');
-      resetButton.addEventListener('click', function(){
+         
+  function resetGame(){
         for (var i = 0; i < deck.length; i++) {
            $(".card").remove();
          }
-        $('.fa-star').show();
+        resetStars();
         deck = [];
-        totalSeconds = 0;
-        clearInterval(timer);
-        newGame();
-    });
-}
+        stopTimer();
+        resetMoves();
+        newGame(); 
+    }
 
 newGame();
