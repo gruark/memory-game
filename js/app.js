@@ -72,12 +72,12 @@ function matchCards(card){
     	   }
 	     else{
          moves++;
-         setTimeout(noMatch, 500);
+         setTimeout(noMatch, 400);
          open = [];
       }
     }
    else if (open.length > 2){  // Clear array in the case more than 2 cards are selected
-       setTimeout(noMatch, 100);
+         clearTimeout(noMatch);
          open = [];
     }
       removeStars(moves);
@@ -133,12 +133,12 @@ function removeStars(moves) {
 	       }
     }
 }
- 
+
 
 function resetStars(){
    $(star).show();
 }
-// Dipslay the ending number of stars 
+// Dipslay the ending number of stars
 
 function displayStars(moves){
    if ((moves) > 15 && moves < 30){
@@ -209,13 +209,13 @@ function toggleModal(){
 
 function closeModal(){
    var closeButton = document.querySelector(".close-button");
-  
+
    closeButton.addEventListener("click", toggleModal);
-  
+
 }
 
 //Reset to start new game
-         
+
 function resetGame(){
    for (var i = 0; i < deck.length; i++) {
       $(".card").remove();
@@ -225,7 +225,7 @@ function resetGame(){
 	   moves = 0;
        stopTimer();
        resetMoves(moves);
-       newGame(); 
+       newGame();
     }
 
 function playAgain(){
